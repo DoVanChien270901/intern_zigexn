@@ -1,0 +1,53 @@
+<div class="admin-job-content">
+  <h3 class="text-center">Applied Jobs</h3>
+  <div class="condition-form">
+    <%= simple_form_for :condition, url: admin_job_path, data: {turbo: false, method: :post }, id: :admin_search do |f| %>
+      <%= f.input :email, input_html: {value: @prp[:email] } %>
+      <%= f.input :city, wrapper: :my_select, collection: @city_list, prompt: 'Select city', selected: @prp[:city]%>
+      <%= f.input :cate, wrapper: :my_select, collection: @cate_list, prompt: 'Select industry', selected: @prp[:cate]%> 
+      <div class="row">
+        <label class="form-label">Date</label>
+        <div class="col">
+          <div class="form-control group-select">
+            <%= f.date_select :from_date, use_month_numbers: true, prompt: { day: 'Day', month: 'Month', year: 'Year'}, selected: @prp[:from_date] || Date.today - 1.months%> 
+          </div>
+        </div>
+        <div class="col-1">
+        </div>
+        <div class="col">
+          <div class="form-control group-select">
+            <%= f.date_select :to_date, use_month_numbers: true, prompt: { day: 'Day', month: 'Month', year: 'Year'}, selected: @prp[:to_date] || Date.today%>
+          </div>
+        </div>
+      </div>
+      <div class="button row mt-4 d-flex justify-content-center">
+        <button class="btn btn-primary col-2 me-5">Search</button>
+        <%= link_to 'CSV Download', export_applies_path(params: request.params, format: :csv), class: 'btn btn-danger col-2 ms-5'%>
+      </div>
+    <% end %>
+  </div>
+  <div class="list-result">
+    <% if @result %>
+      <% @result.each do |item| %>
+        <div class="job-item row">
+          <div class="col-12">
+            <h4><b><%= link_to item.job.name, "/detail/#{item.job.id}" %></b></h4>
+            <p><b> Candidate Name: </b><%= link_to item.full_name, "/my?user_email=#{item.account_user_id}" %></p>
+            <p><b> Candidate CV: </b><%= link_to item.cv.url, item.cv.url, download: item.cv_identifier %></p>
+            <div class="row">
+              <div class="col-8">
+                <p><b> Candidate Email: </b><%= item.email%></p>
+              </div>
+              <div class="col-4">
+                <p><b>Applied at: </b><%= item.created_at.strftime("%Y-%m-%d %H:%M") %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="d-flex justify-content-end mb-4">
+    <%= paginate @result%>
+  </div>
+</div>

@@ -1,0 +1,48 @@
+<div class="favorite-list-content">
+  <h3 class="text-center mb-5">History</h3>
+  <% unless @job_list.empty? %> 
+    <% @job_list.each do |job| %>
+      <label class="d-block">
+        <div class="job-item row">
+          <div class="col-10">
+            <div class="row">
+              <div class="form-check col-1">
+                <input onclick="apply_job(<%= job.id %>)" class="form-check-input" type="radio" name="apply_radio"/>
+              </div>
+              <div class="col-11">
+                <h4><b><%= link_to job.name, "/detail/#{job.id}" %></b></h4>
+                <p><b>Description: </b><br/><%= job.description.truncate_words(255, omission: '...') unless job.description.to_s.empty? %></p>
+                <div class="row">
+                  <div class="col-8">
+                    <% unless job.province.name.to_s.empty? %> 
+                      <p><b>Address: </b><%= "#{job.province.country}, #{job.province.name}"%><%= ", #{job.company_district}" unless job.company_district.to_s.empty?%></p>
+                    <% end %> 
+                  </div>
+                  <div class="col-4">
+                    <% unless job.salary.to_s.empty? %> 
+                      <p><b>Salary: </b><%= job.salary%></p>
+                    <% end %> 
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="job-item-favorite col-2">
+            <%= link_to "/history/#{job.id}", data: {turbo_method: :delete}, class: 'btn btn-danger' do %>
+              <i class="fa-solid fa-star"></i> Remove
+            <% end %> 
+          </div>
+        </div>
+      </label>
+    <% end %>
+    <div class="button">
+      <div class="col-2">
+        <%=link_to "/apply?job_id=#{@job_list[0].id}", class: 'btn btn-primary', id: 'apply_link' do %> 
+          <i class="fa-solid fa-file-medical"></i> Apply
+        <% end %> 
+      <% else %> 
+        <h4 class="text-center">Empty!</h4>
+      <% end %> 
+      </div>
+    </div>
+</div>

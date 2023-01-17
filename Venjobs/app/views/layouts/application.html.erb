@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Venjobs</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div class="header">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+              <%= image_tag 'https://zigexn.vn/assets/media/logo-e5bdc0020427455913196830ae4370fb3a6437f3be67875289bde098bc2c545f.png' %> 
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup" style="justify-content: end;">
+              <div class="navbar-nav">
+                <% if account_user_signed_in? %>
+                  <% if current_account_user.user? %> 
+                    <a class="nav-link active" aria-current="page" href="/my/favorites"><i class="fa-solid fa-star"></i> <span id="favorite_count"><%= current_account_user.favorites.count %></span></a>
+                    <a class="nav-link" href="/history"><i class="fa-solid fa-clock-rotate-left"></i> History</a>
+                    <%= link_to '/my', class: 'nav-link' do %>
+                      <i class="fa-solid fa-user"></i> My Page
+                    <% end %> 
+                    <%= link_to destroy_account_user_session_path, data: { turbo_method: :delete }, class: 'nav-link' do %>
+                      <i class="fa-solid fa-right-from-bracket"></i> Logout
+                    <% end %> 
+                  <% elsif current_account_user.admin? %> 
+                    <%= link_to destroy_account_user_session_path, data: { turbo_method: :delete }, class: 'nav-link' do %>
+                      <i class="fa-solid fa-right-from-bracket"></i> Logout
+                    <% end %> 
+                  <% end %> 
+                <% else %> 
+                  <a class="nav-link active" aria-current="page" href="/my/favorites"><i class="fa-solid fa-star"></i> Favorite</a>
+                  <a class="nav-link" href="/history"><i class="fa-solid fa-clock-rotate-left"></i> History</a>
+                  <a class="nav-link" href="/login"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+                  <a class="nav-link" href="/register/1"><i class="fa-solid fa-registered" aria-hidden="true"></i> Register</a>
+                <% end %> 
+              </div>
+            </div>
+          </div>
+        </nav>    
+      </div>
+      <div id="main-content">
+        <%= yield %>
+      </div>
+      <div id="push"></div>
+    </div>
+    <div id="footer" class="navbar-dark bg-dark">
+      <footer>
+        <div class="contact-detail row">
+          <div class="col">
+            <h4 class="white">ADDRESS</h4>
+            <p> Floor 11, VINA BUILDING,<br>
+            131 Xo Viet Nghe Tinh, Ward 17,<br>
+            Binh Thanh District, Ho Chi Minh City, VietNam</p>
+          </div>
+          <div class="col">
+            <h4 class="white">EMAIL US</h4>
+            <p>info@zigexn.vn</p>
+          </div>
+          <div class="col">
+            <h4 class="white">CALL US</h4>
+            <p> (84)-838-633-399</p>
+          </div>
+          <p class="text-right"><%= "ZIGExN VeNtura 2022"%></p>
+        </div>
+    </div>
+      </footer>
+      </div>
+      <script src="/assets/jobs/search.js"></script>
+  </body>
+</html>
+

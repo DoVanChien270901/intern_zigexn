@@ -1,0 +1,38 @@
+<div class="job-detail-content">
+  <h4><a href="/">TOP</a>
+    <i class="fa-solid fa-angles-right"></i>
+    <%= link_to @job.province.name, "/jobs/city/#{@job.province.name}" %>
+    <i class="fa-solid fa-angles-right"></i>
+    </i><span><%= @job.name%></span>
+  </h4>
+  <div class="job-detail-main-content">
+    <div class="row">
+      <div class="col-10">
+        <h2><%= @job.name %></h2
+        <p><b>Company: </b><%= @job.company_name %></p>
+        <p><b>Location: </b><%= link_to @job.work_placement.name, "/jobs/city/#{@job.work_placement.name}" %> </p>
+        <p><b>Salary: </b><%= @job.salary %></p>
+        <p><b>Description: </b><%= @job.description%></p>
+      </div>
+      <div class="button col-2">
+        <%=link_to "/apply?job_id=#{@job.id}", class: 'btn btn-primary' do %> 
+          <i class="fa-solid fa-file-medical"></i> Apply
+        <% end %> 
+      </div>
+    </div>
+    <div class="button row mt-4">
+      <div class="col-2">
+        <%=link_to "/apply?job_id=#{@job.id}", class: 'btn btn-primary' do %> 
+          <i class="fa-solid fa-file-medical"></i> Apply
+        <% end %> 
+      </div>
+      <div class="col-2">
+          <% if @favorite.empty? %> 
+            <button onclick="add_to_favorite(<%= @job.id %>)" id="<%= "btn_favorite_#{@job.id}" %>" class="btn-favorite"><i class="fa-solid fa-star"></i> Favorite</button>
+          <% else %> 
+          <button onclick="add_to_favorite(<%= @job.id %>)" id="<%= "btn_favorite_#{@job.id}" %>" class="btn-favorite btn-solid"><i class="fa-solid fa-star"></i> Favorite</button>
+          <% end %> 
+      </div>
+    </div>
+  </div>
+</div>

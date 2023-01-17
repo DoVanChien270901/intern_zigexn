@@ -1,0 +1,17 @@
+<div class="industry-list">
+  <h3>Industry List</h3>
+  <div class="industry-content row">
+    <% @category_list.each do |item| %>
+      <div class="industry-item col-3">
+        <div class="col-12 card mt-3">
+          <div class="card-body">
+            <%= link_to item.title, "/jobs/industry/#{item.title}"%>
+          </div>
+          <div class="card-footer">
+            <%= link_to "Total #{item.count_job} jobs", "/jobs/industry/#{item.title}"%>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div> 
+</div>

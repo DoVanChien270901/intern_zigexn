@@ -1,0 +1,21 @@
+<div class="job-apply">
+  <div class="ribbon">
+    <div class="pentagon-disable"><div class="ribbon-content"><p class="fa-solid-circle">1</p><p>New</p></div></div>
+    <div class="pentagon-enable"><div class="ribbon-content"><p class="fa-solid-circle">2</p><p>Confirm</p></div></div>
+    <div class="pentagon-disable"><div class="ribbon-content"><p class="fa-solid-circle">3</p><p>Finish</p></div></div>
+  </div>
+  <div class="apply-form">
+    <h3 class="text-center">Apply Form</h3>
+    <p class="alert-error"> <%= alert if alert%></p>
+    <%= simple_form_for @apply, url: create_apply_path, html: {multipart: true, method: :post}, data: {turbo: false} do |f| %> 
+      <%= f.input :full_name, readonly: true%>
+      <%= f.input :email, readonly: true%> 
+      <label class="form-label">CV</label>
+      <label class="form-control"><%= current_account_user.cv.file.filename %> </label>
+      <div class="button row mt-4 d-flex justify-content-center">
+        <%= link_to 'Edit', "/apply?job_id=#{session[:job_id]}", class: 'btn btn-success col-1 me-5'%>
+        <button class="btn btn-primary col-1 ms-5">Done</button>
+      </div>
+    <% end %>
+  </div>
+</div>

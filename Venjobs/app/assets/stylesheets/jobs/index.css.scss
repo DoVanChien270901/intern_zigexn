@@ -1,0 +1,67 @@
+.key-visual img {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    height: auto;
+}
+.top-jobs, .top-cities, .top-industry{
+    margin: 40px auto;
+}
+.top-cities, .top-industry {
+    max-width: 95%;
+}
+.top-job-item {
+    background-color: white;
+    padding: 20px;
+    max-width: 95%;
+    margin: auto;
+    border-bottom: 1px solid gray;
+    border-top: 1px solid white;
+    transition: background 0.5s;
+    transition: border 0.5s;
+}
+.top-job-item a {
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+}
+.top-job-item:hover a {
+    color: #0d6efd;
+}
+.top-job-item:hover {
+    border-top: 1px solid rgba(255,192,121,.5);
+    border-bottom: 1px solid rgba(255,192,121,.5);
+    background: #fff1e1;
+}
+.top-city-item, .top-industry-item {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+.top-industry p, .top-cities p {
+    margin: 50px;
+}
+.top-job-item p {
+    white-space: pre-line;
+}
+.card-body a, .card-footer a {
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+.card-body:hover a, .card-footer:hover a {
+    color: #0d6efd;
+}
+.card-body:hover, .card-footer:hover {
+    background: #fff1e1;
+}
+.top-cities p, .top-industry p {
+    text-align: right;
+    margin-right: 30px;
+}
+.form-search {
+    max-width: 80%;
+    margin: 50px auto;
+}
+

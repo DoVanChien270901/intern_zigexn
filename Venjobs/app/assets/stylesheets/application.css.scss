@@ -1,0 +1,62 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+@import 'bootstrap';
+@import 'font-awesome';
+
+$bg-dark : rgba(var(--bs-dark-rgb), var(--bs-bg-opacity));
+$text-danger : #ea2635;
+
+html, body {
+  height: 100%;
+  margin: 0;
+  background-color: #e9e9e9;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link {
+    font-size: 20px;
+    margin-right: 50px;
+}
+#wrapper {
+    min-height: 100%;
+    margin-bottom: -200px;
+}
+#main-content {
+    max-width: 80%;
+    margin: 0 auto;
+}
+#footer {
+    height: 200px;
+}
+#push {
+    height: 200px;
+}
+.contact-detail {
+    text-align: center;
+    color: white;
+    padding-top: 50px;
+}
+.contact-detail .text-right {
+    text-align: right;
+    margin-right: 100px;
+    width: 90%;
+}
+.alert-error {
+    color: $text-danger;
+    margin: 30px;
+    text-align: center;
+    min-height: 24px;
+}

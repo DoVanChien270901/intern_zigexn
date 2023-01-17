@@ -1,0 +1,68 @@
+<div class="job-list-content">
+  <div class="key-visual">
+    <%= image_tag 'key_visual.jpg' %> 
+    <h4 class="text-center text-danger mt-3"><%= "#{@total_jobs} jobs" %> </h4>
+  </div>
+  <div class="form-search">
+    <%= form_with url: "/jobs/search", method: :get do |f| %>
+      <div class="form-group row">
+        <%= f.text_field :keyword, class: 'form-control me-3 col', placeholder: 'Enter Search' %>
+        <button type="submit" class="btn btn-danger ms-3 col-1">Search</button>
+      </div>
+    <% end %>
+  </div>
+  <div class="top-jobs">
+    <h3 class="text-center mb-4">Lastes Jobs</h3>
+    <% @top_jobs.each do |job| %>
+      <div class="top-job-item">
+        <%= link_to job.name, "/detail/#{job.id}" %></br></br>
+        <% unless job.description.to_s.empty? %> 
+          <p><b>Description: </b> <%= job.description.truncate(255, separator: ' ')%></p>
+        <% end %> 
+        <% unless job.salary.to_s.empty? %> 
+          <p><b>Salary: </b> <%= job.salary%></p>
+        <% end %> 
+        <% unless job.province.name.to_s.empty? %> 
+          <p><b>Province: </b> <%= job.province.name%></p>
+        <% end %> 
+      </div>
+    <% end %>
+  </div>
+  <div class="top-cities">
+    <h3 class="text-center">Top Citites</h3>
+    <div class="top-cities-content row">
+      <% @top_cities.each do |item| %>
+        <div class="top-city-item col-4">
+          <div class="col-12 card">
+            <div class="card-body">
+              <%= link_to item.name, "/jobs/city/#{item.name}"%>
+            </div>
+            <div class="card-footer">
+              <%= link_to "Total #{item.count_job} jobs", "/jobs/city/#{item.name}"%>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div> 
+    <p><%= link_to "More see #{@total_cities} cities", '/cities'%></p>
+  </div>
+  <div class="top-industry">
+    <h3 class="text-center">Top Industry</h3>
+    <div class="top-cities-content row">
+      <% @top_industry.each do |item| %>
+        <div class="top-industry-item col-4">
+          <div class="col-12 card">
+            <div class="card-body">
+              <%= link_to item.title, "/jobs/industry/#{item.title}"%>
+            </div>
+            <div class="card-footer">
+              <%= link_to "Total #{item.count_job} jobs", "/jobs/industry/#{item.title}"%>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <p><%= link_to "More see #{@total_industry} industrys", 'industrys'%></p>
+  </div>
+</div>
+

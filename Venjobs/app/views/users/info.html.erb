@@ -1,0 +1,19 @@
+<div class="info-content">
+  <h3 class="text-center">My Page</h3>
+  <% if alert %> 
+    <p class="alert-error"><%= alert if alert %></p>
+  <% end %> 
+  <% if alert %> 
+    <p class="text-success"><%= notice if notice %></p> 
+  <% end %> 
+  <%= simple_form_for @user, url: update_user_path, data: { turbo: false }, method: :post do |f| %>
+    <%= f.input :email, readonly: true %>
+    <%= f.input :full_name, error: f.error(:full_name)%>
+    <%= f.input :cv, label: 'My CV', error: f.error(:cv)%>
+    <%= f.input :new_password, error: f.error(:new_password) %>
+    <%= f.input :old_password, error: f.error(:encrypted_password)%>
+    <div class="button">
+      <button class="btn btn-primary">Update</button>
+    </div>
+  <% end %> 
+</div>

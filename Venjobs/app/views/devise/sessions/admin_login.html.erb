@@ -1,0 +1,13 @@
+<div class="signin-content">
+  <div class="form-login">
+    <h1>Admin Login</h1>
+    <p class="alert-error"> <%= alert if alert%></p>
+    <%= simple_form_for(resource, as: resource_name, url: new_admin_session_path, data: { turbo: false } ) do |f| %>
+        <%= f.input :email, label: 'Login Id', error: f.error(:email) %> 
+        <%= f.input :encrypted_password, error: f.error(:encrypted_password), label: :password %> 
+      <div class="button row mt-4">
+        <%= f.submit "Login", class: 'btn btn-outline-success col-2' %>
+      </div>
+    <% end %>
+  </div>
+</div>

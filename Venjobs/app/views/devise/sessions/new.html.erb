@@ -1,0 +1,17 @@
+<div class="signin-content">
+  <div class="form-login">
+    <h1>Log in</h1>
+    <p class="alert-error"><%= alert if alert%></p>
+    <%= simple_form_for resource, as: resource_name, url: session_path(resource_name), data: { turbo: false } do |f| %>
+        <%= f.input :email, error: f.error(:email) %> 
+        <%= f.input :password, error: f.error(:password)%> 
+      <div class="d-flex justify-content-end my-1 me-1">
+        <%= link_to 'Forgot your password?', '/forgot_password'%>
+      </div>
+      <div class="button row mt-4">
+        <%= f.submit "Log in", class: 'btn btn-outline-success col-2 me-4' %>
+        <%= link_to 'Register', '/register/1', class: 'btn btn-outline-primary col-2 ms-4'%>
+      </div>
+    <% end %>
+  </div>
+</div>

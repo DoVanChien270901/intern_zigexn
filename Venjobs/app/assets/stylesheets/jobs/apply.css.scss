@@ -1,0 +1,43 @@
+.job-apply {
+    max-width: 80%;
+    margin: 50px auto;
+}
+.ribbon {
+    display: flex;
+    justify-content: center;
+}
+.pentagon-enable {
+    background-color: #2f86bb;
+    width: 33.33%;
+    height: 35px;
+    clip-path: polygon(0 0, 95% 0, 100% 50%, 95% 100%, 0 100%, 5% 50%);
+}
+.pentagon-disable {
+    width: 33.33%;
+    height: 35px;
+}
+.ribbon-content {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+}
+.ribbon-content p {
+    margin: auto 4px  auto;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    text-align: center;
+}
+.pentagon-enable .fa-solid-circle, .pentagon-disable .fa-solid-circle{
+    background-color: white;
+    color: #2f86bb !important;
+}
+.pentagon-enable .ribbon-content p {
+    color: white;
+}
+.pentagon-disable .ribbon-content p {
+    color: #afb1b1 !important;
+}
+.apply-form {
+    margin: 50px auto;
+}

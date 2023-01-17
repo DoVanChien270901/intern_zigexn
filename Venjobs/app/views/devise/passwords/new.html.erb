@@ -1,0 +1,13 @@
+<div class="forgot-password-content">
+  <div class="form-content">
+    <h3 class="text-center">Forgot your password</h3>
+    <p class="notice-msg"><%= notice if notice %></p>
+    <%= simple_form_for resource, as: resource_name, url: password_path(resource_name), html: { method: :post }, data: {turbo: false} do |f| %>
+      <%= f.input :email, error: f.error(:email) %> 
+      <div class="mb-3">
+        <%= f.submit "Send me reset password instructions", class: 'btn btn-outline-primary' %>
+      </div>
+    <% end %>
+
+  </div>
+</div>

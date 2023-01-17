@@ -1,0 +1,2 @@
+class AccountAdmin < ApplicationRecord
+end

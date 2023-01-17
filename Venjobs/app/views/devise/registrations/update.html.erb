@@ -1,0 +1,15 @@
+<div class="register3-content">
+  <h3 class="text-center">Register</h3>
+  <div class="register3-form">
+    <%= simple_form_for @profile_user, url: update_account_user_registrantaion_url, data: { turbo: false }, method: :post do |f| %> 
+      <%= f.input :email, input_html: {readonly: true} %>
+      <%= f.input :full_name, error: f.error(:full_name)%>
+      <%= f.input :encrypted_password, label: 'password',error: f.error(:encrypted_password), input_html: { value: @profile_user.encrypted_password } %>
+      <%= f.input :confirm_password, error: f.error(:confirm_password)%> 
+      <%= f.input :cv,label: 'Curriculum Vitae', error: f.error(:cv)%>
+      <div class="d-flex justify-content-center mt-4">
+        <%= f.submit " Register ", class: 'btn btn-primary btn-lg' %>
+      </div>
+    <% end %>
+  </div>
+</div>

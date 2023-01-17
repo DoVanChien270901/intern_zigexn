@@ -1,0 +1,26 @@
+<div class="favorite-list-content">
+  <h3 class="text-center mb-5">Applied Jobs</h3>
+  <% @apply_list.each do |item| %>
+    <div class="job-item row">
+      <div class="col-12">
+        <h4><b><%= link_to item.job.name, "/detail/#{item.job.id}" %></b></h4>
+        <p><b>Description: </b><br/><%= item.job.description.truncate_words(255, omission: '...') unless item.job.description.to_s.empty? %></p>
+        <div class="row">
+          <div class="col-6">
+            <% unless item.job.province.name.to_s.empty? %> 
+              <p><b>Address: </b><%= "#{item.job.province.country}, #{item.job.province.name}"%><%= ", #{item.job.company_district}" unless item.job.company_district.to_s.empty?%></p>
+            <% end %> 
+          </div>
+          <div class="col-3">
+            <% unless item.job.salary.to_s.empty? %> 
+              <p><b>Salary: </b><%= item.job.salary%></p>
+            <% end %> 
+          </div>
+          <div class="col-3">
+              <p><b>Applied at: </b><%= item.created_at.strftime("%Y-%m-%d %H:%M") %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

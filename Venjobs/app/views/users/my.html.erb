@@ -1,0 +1,22 @@
+<div class="my-content">
+  <h3 class="text-center">My Page</h3>
+  <p class="text-center text-success"><%= notice if notice %></p>
+  <div>
+    <label class="form-label">Full name</label>
+    <label class="form-control mb-3"><%= @user.full_name %> </label>
+    <label class="form-label">Email</label>
+    <label class="form-control mb-3"><%= @user.email%> </label>
+    <label class="form-label">CV</label>
+    <% if @user.cv? %> 
+      <%= link_to @user.cv.url, download: @user.cv.file.filename, class: 'form-control mb-3' do %> 
+        <i class="fa-solid fa-download"></i> <%= @user.cv.url %> 
+      <% end %> 
+    <% else %> 
+      <label class="form-control mb-3">Please! Upload your CV</label>
+    <% end %> 
+    <div class="button row mt-4 d-flex justify-content-center">
+      <%= link_to 'Update', "/my/info", class: 'btn btn-danger col-1 me-5'%>
+      <%= link_to 'My Jobs', "/my/jobs", class: 'btn btn-primary col-1 me-5'%>
+    </div>
+  </div>
+</div>

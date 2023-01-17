@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+</head>
+<body>
+<div class="job-list-content">
+  <div class="form-search">
+    <%= form_with url: search_jobs_path, method: :get, data: { controller: 'hello' } do |f| %>
+      <div class="form-group">
+        <div class="row">
+          <%= f.text_field :keyword, class: 'form-control me-3 col', placeholder: 'Enter Search', value: @keyword, id: "keyword" %>
+          <button type="submit" class="btn btn-danger ms-3 col-1">Search</button>
+        </div>
+        <div class="data-list">
+        <div class="arrow-up"></div>
+          <div class="data-list-item" >
+            <div class="data-list-item-p" id="data-list1">
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="row">
+    <div class="col-3">
+      <h4>Browse by city</h4>
+      <ul class="list-group">
+        <% for row in @query.facet(:city_facet).rows %> 
+          <li class="list-group-item">
+            <input type="checkbox" class="facet-check-box-city" name="city" value="<%= row.value %>" <%= params[:city_facet] == row.value ? 'checked' : '' %>>
+            <%= row.value %> (<%= row.count %> ) 
+          </li>
+        <% end %> 
+      </ul>
+    </div>
+    <div class="col-9">
+      <div class="job-list">
+        <div class="row text-center">
+          <h4 class="col">Total: <%= @job_list.total_count %> </h4>
+          <h4 class="col">Result for: <%= @keyword %> </h4>
+        </div>
+        <div class="d-flex justify-content-end mb-4">
+          <%= paginate @job_list, window: 0, outer_window: 3%>
+        </div>
+        <% @job_list.each do |job| %>
+          <div class="job-item row">
+            <div class="col-10">
+              <h4><b><%= link_to job.name, "/detail/#{job.id}" %></b></h4>
+              <p><b>Description: </b><br/><%= job.description.truncate_words(255, omission: '...') unless job.description.to_s.empty? %></p>
+              <div class="row">
+                <div class="col-8">
+                  <% unless job.province.name.to_s.empty? %> 
+                    <p><b>Address: </b><%= "#{job.province.country}, #{job.province.name}"%><%= ", #{job.company_district}" unless job.company_district.to_s.empty?%></p>
+                  <% end %> 
+                </div>
+                <div class="col-4">
+                  <% unless job.salary.to_s.empty? %> 
+                    <p><b>Salary: </b><%= job.salary%></p>
+                  <% end %> 
+                </div>
+              </div>
+            </div>
+            <div class="job-item-favorite col-2">
+              <% if @arr_job_id.include? job.id %> 
+                <button onclick="add_to_favorite(<%= job.id %>)" id="<%= "btn_favorite_#{job.id}" %>" class="btn-favorite btn-solid"><i class="fa-solid fa-star"></i> Favorite</button>
+              <% else %> 
+                <button onclick="add_to_favorite(<%= job.id %>)" id="<%= "btn_favorite_#{job.id}" %>" class="btn-favorite"><i class="fa-solid fa-star"></i> Favorite</button>
+              <% end %> 
+            </div>
+          </div>
+        <% end %>
+        <div class="d-flex justify-content-end mb-4">
+          <%= paginate @job_list %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+</head>
+<body>
+  <p>Dear admin</p>
+  <p>Job is applied. The applied job's information is as follow:</p>
+
+  <p> Job title: <%=@job.name %> </p>
+  <p> Location: <%=@job.company_address%> </p>
+  <p> Company: <%=@job.company_name%> </p>
+
+  <p> Your submitted information:</p>
+
+  <p> Full Name: <%=@apply.full_name %> </p>
+  <p> Email: <%=@apply.email %> </p>
+  <p>CV Link: <%= link_to @apply.cv.file.filename, @apply.cv.url, download: @apply.cv.file.filename %> 
+<p> Best,</p>
+</body>
+</html>

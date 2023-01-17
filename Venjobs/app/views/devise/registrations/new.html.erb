@@ -1,0 +1,13 @@
+<div class="register1-content">
+    <h3 class="text-center mt-5">Sign up</h3>
+    <p class="alert-error"> <%= alert if alert%></p>
+    <%=simple_form_for(resource, as: resource_name, url: create_account_user_registrantion_url(resource_name), data: {turbo: false}) do |f| %>
+      <div class="mb-3">
+        <%= f.input :email, error: f.error(:email), autofocus: true, class: 'form-control', required: false, type: 'text'%>
+      </div>
+      <div class="button mb-3 d-flex justify-content-center">
+        <%= f.submit "Confirm you email", class: 'btn btn-outline-success mt-2'%>
+      </div>
+    <% end %>
+</div>
+

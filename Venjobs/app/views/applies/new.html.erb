@@ -1,0 +1,22 @@
+<div class="job-apply">
+  <div class="ribbon">
+    <div class="pentagon-enable"><div class="ribbon-content"><p class="fa-solid-circle">1</p><p>New</p></div></div>
+    <div class="pentagon-disable"><div class="ribbon-content"><p class="fa-solid-circle">2</p><p>Confirm</p></div></div>
+    <div class="pentagon-disable"><div class="ribbon-content"><p class="fa-solid-circle">3</p><p>Finish</p></div></div>
+  </div>
+  <div class="apply-form">
+    <h3 class="text-center">Apply Form</h3>
+    <p class="alert-error"> <%= alert if alert%></p>
+    <%= simple_form_for @apply, url: confirm1_apply_path, html: {multipart: true, method: :post}, data: {turbo: false} do |f| %> 
+      <%= f.input :full_name, error: f.error(:full_name), input_html:{value: current_account_user.full_name} %>
+      <%= f.input :email, input_html:{value: current_account_user.email}%> 
+    <label class="form-label">CV</label>
+    <%= link_to current_account_user.cv.url, download: current_account_user.cv.file.filename, class: 'form-control mt-2' do %> 
+      <i class="fa-solid fa-download"></i> <%= current_account_user.cv.url %> 
+  <% end %> 
+  <div class="button-new">
+    <button class="btn btn-primary mt-4">Confirm</button>
+  </div>
+<% end %>
+  </div>
+</div>
